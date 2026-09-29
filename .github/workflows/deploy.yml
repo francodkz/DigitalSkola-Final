@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  PROJECT_ID: gcp-project-id-kamu        # Nanti diganti dengan Project ID GCP kamu
+  PROJECT_ID: project-80ec98bd-4894-41d5-ba9       # Nanti diganti dengan Project ID GCP kamu
   REGION: asia-southeast2                # Region Jakartaa
   SERVICE_NAME: wibe-studio-app
 
