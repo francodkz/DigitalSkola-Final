@@ -6,7 +6,7 @@ on:
 
 env:
   PROJECT_ID: gcp-project-id-kamu        # Nanti diganti dengan Project ID GCP kamu
-  REGION: asia-southeast2                # Region Jakarta
+  REGION: asia-southeast2                # Region Jakartaa
   SERVICE_NAME: wibe-studio-app
 
 jobs:
