@@ -1,118 +1,33 @@
-# 🔥Build a Stunning Fashion Studio Website with React JS [ Locomotive Scroll + GSAP + Framer Motion ]
+# Wibe Studio - Cloud Full-Stack Deployment (Final Project)
 
-![GitHub stars](https://img.shields.io/github/stars/codebucks27/wibe-studio-starter-files?style=social&logo=ApacheSpark&label=Stars)&nbsp;&nbsp;
-![GitHub forks](https://img.shields.io/github/forks/codebucks27/wibe-studio-starter-files?style=social&logo=KashFlow&&label=Forks)&nbsp;&nbsp;
-![Github Followers](https://img.shields.io/github/followers/codebucks27.svg?style=social&label=Follow)&nbsp;&nbsp;<br />
+Proyek ini merupakan tugas akhir bootcamp yang mengimplementasikan otomatisasi CI/CD, kontainerisasi aplikasi web modern menggunakan Docker, serta *deployment* ke layanan cloud **GCP Cloud Run**
 
-This repository contains final code for Fashion Studio Website in ReactJS. <br />
+## 🚀 Tech Stack
+* **Frontend:** React (Vite)
+* **Web Server / Proxy:** Nginx (Alpine)
+* **Containerization:** Docker (Multi-stage build)
+* **CI/CD Pipeline:** GitHub Actions
+* **Cloud Infrastructure:** Google Cloud Platform (GCP Cloud Run & Artifact Registry)
 
-View Demo👇: <br />
-https://wibe-studio.netlify.app/ <br />
+---
 
-checkout following **Tutorial** to learn👇: <br />
-<a href="https://devdreaming.com/videos/build-stunning-fashion-studio-website-with-reactJS-locomotive-scroll-gsap" target="_blank">🔥Build a Stunning Fashion Studio Website with React JS</a> ![YouTube Video Views](https://img.shields.io/youtube/views/Ra1Fsa9YJCk?style=social) </br >
+## 🛠️ Arsitektur & Alur CI/CD
+1. **Source Code Push:** Setiap kali dilakukan `git push` ke branch `main`, GitHub Actions akan otomatis memicu *workflow* deployment[cite: 1].
+2. **Docker Build:** Menggunakan *multi-stage Dockerfile*[cite: 10]:
+   * **Stage 1 (Builder):** Menginstal dependensi Node.js dan melakukan kompilasi aplikasi React menggunakan Vite (`npm run build`) ke direktori output `build`.
+   * **Stage 2 (Production):** Menyajikan file statis hasil *build* menggunakan web server Nginx yang ringan.
+3. **Registry Upload:** Docker image yang sudah jadi di-*push* secara aman ke **Google Artifact Registry** di region `asia-southeast2`.
+4. **Cloud Run Deployment:** Layanan secara otomatis memperbarui revisi aplikasi di **GCP Cloud Run** dengan *image* terbaru.
 
-[![YouTube Video Views](https://img.shields.io/youtube/views/Ra1Fsa9YJCk?style=social)](https://youtu.be/Ra1Fsa9YJCk)<br />
+---
 
-## 🚀 2026 Refresh — What Changed
+## 🔒 Keamanan & Monitoring
+* **Secrets Management:** Kredensial sensitif seperti Service Account Key GCP disimpan dengan aman di **GitHub Secrets** (`GCP_SA_KEY`) tanpa di-*hardcode* di dalam *source code*.
+* **Monitoring & Autoscaling:** Performa aplikasi dipantau secara *real-time* melalui **GCP Cloud Run Metrics** (mencakup *Request count*, *Latencies*, *Container instance count*, dan *CPU/Memory utilization*).
 
-The original tutorial code (Create React App + React 17) has been modernized:
+---
 
-- **Build tool:** Migrated from `create-react-app` (`react-scripts`) to **Vite** for instant startup and fast HMR.
-- **Package manager:** Switched to **bun**.
-- **React:** `17.x` → `19.x` (uses the new `createRoot` API).
-- **Routing:** `react-router-dom` `6.x` → `7.x`.
-- **Animation:** `framer-motion` `6.x` → `12.x` (replaced removed `yoyo` with `repeat`/`repeatType`).
-- **Styling:** `styled-components` `5.x` → `6.x` (custom DOM props converted to transient `$` props).
-- **Fonts:** `@fontsource/*` `4.x` → `5.x`.
-- Removed CRA-only files (`reportWebVitals`, `setupTests`, `manifest.json`, default logos, test boilerplate).
-
-> Looking for the original tutorial code? Check out the pre-update commit: [`f256a87`](https://github.com/codebucks27/wibe-studio/commit/f256a8761be47c632f1f77ed4add04c10e91f0e6).
-
-### Run Locally
-
-```bash
-bun install
-bun run dev      # start dev server at http://localhost:3000
-bun run build    # production build to ./build
-bun run preview  # preview the production build
-```
-
-
-
-### Images of The Fashion Studio Website:
-![HOME](https://github.com/codebucks27/wibe-studio-starter-files/blob/main/Wibe-Home-Desktop.png)
-![ABOUT](https://github.com/codebucks27/wibe-studio-starter-files/blob/main/Wibe-About-Desktop.png)
-![HOME](https://github.com/codebucks27/wibe-studio-starter-files/blob/main/Wibe-Home-Moblie.png)
-![ABOUT](https://github.com/codebucks27/wibe-studio-starter-files/blob/main/Wibe-About-Mobile.png)
-
-
-### Resources Used in This Project
-
-Fonts: https://fontsource.org/ <br />
-
-### External Libraries used in this project: 
-
-[styled-components](https://styled-components.com/docs/advanced) <br />
-[GSAP](https://greensock.com/gsap/) <br />
-[Framer-mMtion](https://www.framer.com/motion/) <br />
-[React-Locomotive-Scroll](https://www.npmjs.com/package/react-locomotive-scroll) <br />
-[Locomotive-Scroll](https://www.npmjs.com/package/locomotive-scroll) <br />
-
-### All The Resources Used in This Website Are from👇:
-
-Walking Girl Video:<br />
-Video by cottonbro from Pexels [https://www.pexels.com/@cottonbro]<br />
-
-Images:<br />
-
-Ring: Photo by Arif Syuhada from Pexels<br />
-https://www.pexels.com/@arifsyd15<br />
-
-Rings: Photo by cottonbro from Pexels<br />
-https://www.pexels.com/@cottonbro<br />
-
-Earings: Photo by say straight from Pexels<br />
-https://www.pexels.com/@say-straight-1400349<br />
-
-White Tee:Photo by cottonbro from Pexels<br />
-https://www.pexels.com/@cottonbro<br />
-
-black t-shirt girl: Photo by Lena Hsvl from Pexels<br />
-https://www.pexels.com/@lenaneva<br />
-
-Red girl: Photo by Yaroslava Borz from Pexels<br />
-https://www.pexels.com/@yaroslava-borz-126286496<br />
-
-Ethnic Wear: Photo by Artem Beliaikin from Pexels<br />
-https://www.pexels.com/@belart84<br />
-
-Suit: Photo by Chloe from Pexels<br />
-https://www.pexels.com/@chloekalaartist<br />
-
-cap male: Photo by cottonbro from Pexels<br />
-https://www.pexels.com/@cottonbro<br />
-
-Watches: Photo by Mister Mister from Pexels<br />
-https://www.pexels.com/@bemistermister<br />
-
-Denim: Photo by Denis Zagorodniuc from Pexels<br />
-https://www.pexels.com/@imdennyz<br />
-
-Jacket: Photo by Simon Robben from Pexels<br />
-https://www.pexels.com/@simon-robben-55958<br />
-
-Yellow T-shirt:Photo by RAUL REYNOSO from Pexels<br />
-https://www.pexels.com/@raulkingr<br />
-
-Yellow Dress: Photo by Godisable Jacob from Pexels<br />
-https://www.pexels.com/@godisable-jacob-226636<br />
-
-
-
-### Famous Quotes Used:
-"Fashion is the armour to survive the reality of everyday life."<br />
--- bill cunningham
-
-"One is never over-dressed or under-dressed with a Little Black Dress." —Karl Lagerfeld<br />
-
+## 📋 Link Akses & Bukti Pengerjaan
+* **Repository GitHub:** https://github.com/francodkz/DigitalSkola-Final
+* **Pipeline CI/CD:** https://github.com/francodkz/DigitalSkola-Final/actions/runs/36524259196
+* **Aplikasi Live (Cloud Run):** https://wibe-studio-app-476505133961.asia-southeast2.run.app
