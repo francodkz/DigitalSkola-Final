@@ -12,8 +12,8 @@ Proyek ini merupakan tugas akhir bootcamp yang mengimplementasikan otomatisasi C
 ---
 
 ## 🛠️ Arsitektur & Alur CI/CD
-1. **Source Code Push:** Setiap kali dilakukan `git push` ke branch `main`, GitHub Actions akan otomatis memicu *workflow* deployment[cite: 1].
-2. **Docker Build:** Menggunakan *multi-stage Dockerfile*[cite: 10]:
+1. **Source Code Push:** Setiap kali dilakukan `git push` ke branch `main`, GitHub Actions akan otomatis memicu *workflow* deployment.
+2. **Docker Build:** Menggunakan *multi-stage Dockerfile*.
    * **Stage 1 (Builder):** Menginstal dependensi Node.js dan melakukan kompilasi aplikasi React menggunakan Vite (`npm run build`) ke direktori output `build`.
    * **Stage 2 (Production):** Menyajikan file statis hasil *build* menggunakan web server Nginx yang ringan.
 3. **Registry Upload:** Docker image yang sudah jadi di-*push* secara aman ke **Google Artifact Registry** di region `asia-southeast2`.
